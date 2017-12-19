@@ -1,0 +1,109 @@
+﻿@model ResumeMVC.ViewModels.WorkExperienceVM
+
+<style type="text/css">
+    .row {
+        margin-bottom: 25px;
+    }
+
+    .IconTitle {
+        border: 3px solid #e0e0e0;
+        display: inline-block;
+        width: 70px;
+        height: 70px;
+        border-radius: 100%;
+        background-color: #e066ff;
+    }
+</style>
+
+<div class="container">
+
+
+
+    <div class="WorkExperience FirstLevel" style="margin: 19% auto;">
+
+        <div style="margin-left:18%;">
+            <span class="IconTitle">
+                <span class="glyphicon glyphicon-book" aria-hidden="true" style="margin-left:26px; margin-top: 23px; color:#FFF;"></span>
+            </span>
+
+            <h4 style="margin-left: 8%; margin-top: -4%;">Work Experience</h4>
+        </div>
+
+
+        <div class="panel panel-default" style="width: 65%; margin-left: 18%; margin-top: 3%;">
+
+            <div class="panel-heading">
+                <h3 class="panel-title">Work Experience</h3>
+            </div> <!-- END PANEL HEADING -->
+            <form>
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <div class="col-xs-4">
+                            @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control", @placeholder = "Company" } })
+                            @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-5">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = "Title" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-3">
+                            @Html.DropDownListFor(model => model.Country, Model.ListeOfCountries, new { @class = "form-control", @placeholder = "Country" })
+                            @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <div class="input-group date" id="datetimepicker1">
+                                    @Html.EditorFor(model => model.FromYear, new { htmlAttributes = new { @class = "form-control", @placeholder = "From Year" } })
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FromYear, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <div class="input-group date" id="datetimepicker2">
+                                    @Html.EditorFor(model => model.ToYear, new { htmlAttributes = new { @class = "form-control", @placeholder = "From Year" } })
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.ToYear, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xs-12">
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Description", @rows = "6" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <button type="button" id="AddOrUpdateExperience" class="btn" style="background-color: #e066ff; color:#FFF;"> <span class="glyphicon glyphicon-book" aria-hidden="true"></span>  Add Work Experience </button>
+
+                    <a href="@Url.Action("SkiCerfLang","Resume")" class="btn" style="position: relative; right: -50%; color:#FFF; background-color: #e066ff"> Next Step>> Skills </a>
+
+                </div> <!-- END PNEL BODY-->
+            </form>
+        </div>
+
+    </div>   <!-- END EDUCATION FIRST LEVEL-->
+
+
+
+</div>   <!-- END CONTAINER --> 

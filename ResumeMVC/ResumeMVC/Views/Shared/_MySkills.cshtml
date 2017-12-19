@@ -1,0 +1,40 @@
+﻿@model ResumeMVC.ViewModels.SkillsVM
+
+<div class="Skills FirstLevel" style="margin: 19% auto;">
+
+    <div style="margin-left:18%;">
+        <span class="IconTitle">
+            <span class="glyphicon glyphicon-tag" aria-hidden="true" style="margin-left:26px; margin-top: 23px; color:#FFF;"></span>
+        </span>
+
+        <h4 style="margin-left: 8%; margin-top: -4%;">Skills</h4>
+    </div>
+
+
+    <div class="panel panel-default" style="width: 65%; margin-left: 18%; margin-top: 3%;">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">Skills</h3>
+        </div> <!-- END PANEL HEADING -->
+        <form>
+            <div class="panel-body">
+
+                <div class="row">
+
+                    <div class="col-xs-8">
+                        @Html.EditorFor(model => model.SkillName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Skill (ex: ASP.NET MVC, jQuery, ...)" } })
+                        @Html.ValidationMessageFor(model => model.SkillName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <button type="button" id="AddSkill" class="btn btn-primary"> <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>  Add Skill </button>
+
+            </div> <!-- END PANEL BODY-->
+        </form>
+    </div>
+
+</div>   <!-- END SKILLS FIRST LEVEL-->
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

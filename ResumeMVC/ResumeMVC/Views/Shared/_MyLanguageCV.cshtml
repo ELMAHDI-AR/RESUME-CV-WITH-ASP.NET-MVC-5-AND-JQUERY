@@ -1,0 +1,60 @@
+﻿@model IQueryable<ResumeMVC.ViewModels.LanguageVM>
+
+
+
+<div class="panel panel-default">
+
+    <div style="margin-left:3%; margin-top: 2%;">
+        <span class="IconTitle" style="background-color:#d9534f">
+            <span class="glyphicon glyphicon-list" aria-hidden="true" style="margin-left:26px; margin-top: 23px; color:#FFF;"></span>
+        </span>
+
+        <h4 style="margin-left: 12%; margin-top: -6%;">Language</h4>
+    </div>
+
+    <div class="panel-body">
+
+        @if (Model != null && Model.Any())
+        {
+            foreach (var language in Model)
+            {
+                <div class="box" style="border:none;">
+                    <div class="details">
+                        <div style="display: block; width: 85px; margin-left: 13px;">
+                            @LanguageImage(language.LanguageName)
+                        </div>
+                        <div style="margin-left: 11%; margin-top: -9%;">
+                            <p style="margin-left: 4%; font-weight:bold;">
+                                @language.LanguageName
+                            </p>
+                            <span style="margin-left: 27px;"> <i>@language.Proficiency</i></span>
+                        </div>
+
+                    </div> <!--END DETAILS-->
+
+                </div> <!--END BOX-->
+            }
+        }
+
+    </div> <!-- END PANEL BODY -->
+</div> <!-- END PANEL DEFAULT LANGUAGE -->
+
+
+
+@helper LanguageImage(string languageName)
+{
+switch (languageName.ToLower())
+{
+    case "french":
+            @Helper.GetImage("french.png");
+        break;
+
+    case "english":
+            @Helper.GetImage("english.png");
+        break;
+
+    case "german":
+            @Helper.GetImage("german.png");
+        break;
+}
+}

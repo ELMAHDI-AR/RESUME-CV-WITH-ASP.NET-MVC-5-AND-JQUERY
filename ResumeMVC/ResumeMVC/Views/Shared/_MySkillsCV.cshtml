@@ -1,0 +1,54 @@
+﻿@model IQueryable<ResumeMVC.ViewModels.SkillsVM>
+
+
+
+<div class="panel panel-default">
+
+    <div style="margin-left:3%; margin-top: 2%;">
+        <span class="IconTitle" style="background-color:#2e6da4">
+            <span class="glyphicon glyphicon-tag" aria-hidden="true" style="margin-left:26px; margin-top: 23px; color:#FFF;"></span>
+        </span>
+
+        <h4 style="margin-left: 12%; margin-top: -6%;">Skills</h4>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="">
+
+            <table class="table table-hover" style="font-size: 13px;">
+
+                <thead>
+
+                    <tr>
+                        <th>#</th>
+                        <th>Skills</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    @{ 
+                        int count = 1;
+                    }
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var skill in Model)
+                        {
+                            <tr>
+                                <td> @count </td>
+                                <td>@skill.SkillName</td>
+                            </tr>
+                            count++;
+                        }
+                    }
+                </tbody>
+
+
+            </table>
+
+        </div> <!--END BOX-->
+
+    </div> <!-- END PANEL BODY -->
+</div> <!-- END PANEL DEFAULT SKILLS -->
+

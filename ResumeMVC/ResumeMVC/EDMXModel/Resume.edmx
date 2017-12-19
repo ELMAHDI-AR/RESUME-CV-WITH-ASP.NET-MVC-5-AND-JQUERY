@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBCVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Certifications">
+          <Key>
+            <PropertyRef Name="IdCer" />
+          </Key>
+          <Property Name="IdCer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CertificationName" Type="varchar" MaxLength="50" />
+          <Property Name="CertificationAuthority" Type="varchar" MaxLength="20" />
+          <Property Name="LevelCertification" Type="varchar" MaxLength="18" />
+          <Property Name="FromYear" Type="datetime" />
+          <Property Name="IdPers" Type="int" />
+        </EntityType>
+        <EntityType Name="Educations">
+          <Key>
+            <PropertyRef Name="IDEdu" />
+          </Key>
+          <Property Name="IDEdu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstituteUniversity" Type="varchar" MaxLength="50" />
+          <Property Name="TitleOfDiploma" Type="varchar" MaxLength="50" />
+          <Property Name="Degree" Type="varchar" MaxLength="50" />
+          <Property Name="FromYear" Type="datetime" />
+          <Property Name="ToYear" Type="datetime" />
+          <Property Name="City" Type="varchar" MaxLength="20" />
+          <Property Name="Country" Type="varchar" MaxLength="20" />
+          <Property Name="IdPers" Type="int" />
+        </EntityType>
+        <EntityType Name="Languages">
+          <Key>
+            <PropertyRef Name="IDLang" />
+          </Key>
+          <Property Name="IDLang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageName" Type="varchar" MaxLength="15" />
+          <Property Name="Proficiency" Type="varchar" MaxLength="35" />
+          <Property Name="IdPers" Type="int" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="IDPers" />
+          </Key>
+          <Property Name="IDPers" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="Nationality" Type="varchar" MaxLength="15" />
+          <Property Name="EducationalLevel" Type="varchar" MaxLength="30" />
+          <Property Name="Address" Type="varchar" MaxLength="70" />
+          <Property Name="Tel" Type="varchar" MaxLength="25" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Summary" Type="varchar(max)" />
+          <Property Name="LinkedInProdil" Type="varchar" MaxLength="50" />
+          <Property Name="FaceBookProfil" Type="varchar" MaxLength="50" />
+          <Property Name="C_CornerProfil" Type="varchar" MaxLength="50" />
+          <Property Name="TwitterProfil" Type="varchar" MaxLength="50" />
+          <Property Name="Profil" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Skills">
+          <Key>
+            <PropertyRef Name="IDSki" />
+          </Key>
+          <Property Name="IDSki" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkillName" Type="varchar" MaxLength="50" />
+          <Property Name="IdPers" Type="int" />
+        </EntityType>
+        <EntityType Name="WorkExperiences">
+          <Key>
+            <PropertyRef Name="IDExp" />
+          </Key>
+          <Property Name="IDExp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="Title" Type="varchar" MaxLength="30" />
+          <Property Name="Country" Type="varchar" MaxLength="10" />
+          <Property Name="FromYear" Type="datetime" />
+          <Property Name="ToYear" Type="datetime" />
+          <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="IDPers" Type="int" />
+        </EntityType>
+        <Association Name="FK_Certifications_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Certifications" Type="Self.Certifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="IDPers" />
+            </Principal>
+            <Dependent Role="Certifications">
+              <PropertyRef Name="IdPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Education_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Educations" Type="Self.Educations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="IDPers" />
+            </Principal>
+            <Dependent Role="Educations">
+              <PropertyRef Name="IdPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Language_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Languages" Type="Self.Languages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="IDPers" />
+            </Principal>
+            <Dependent Role="Languages">
+              <PropertyRef Name="IdPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skills_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Skills" Type="Self.Skills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="IDPers" />
+            </Principal>
+            <Dependent Role="Skills">
+              <PropertyRef Name="IdPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkExperience_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="WorkExperiences" Type="Self.WorkExperiences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="IDPers" />
+            </Principal>
+            <Dependent Role="WorkExperiences">
+              <PropertyRef Name="IDPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBCVModelStoreContainer">
+          <EntitySet Name="Certifications" EntityType="Self.Certifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Educations" EntityType="Self.Educations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Languages" EntityType="Self.Languages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkExperiences" EntityType="Self.WorkExperiences" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Certifications_Person" Association="Self.FK_Certifications_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Certifications" EntitySet="Certifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Education_Person" Association="Self.FK_Education_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Educations" EntitySet="Educations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Language_Person" Association="Self.FK_Language_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Languages" EntitySet="Languages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skills_Person" Association="Self.FK_Skills_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Skills" EntitySet="Skills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkExperience_Person" Association="Self.FK_WorkExperience_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="WorkExperiences" EntitySet="WorkExperiences" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBCVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Certification">
+          <Key>
+            <PropertyRef Name="IdCer" />
+          </Key>
+          <Property Name="IdCer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CertificationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CertificationAuthority" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LevelCertification" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="FromYear" Type="DateTime" Precision="3" />
+          <Property Name="IdPers" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Certifications_Person" FromRole="Certifications" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="IDEdu" />
+          </Key>
+          <Property Name="IDEdu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstituteUniversity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TitleOfDiploma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FromYear" Type="DateTime" Precision="3" />
+          <Property Name="ToYear" Type="DateTime" Precision="3" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdPers" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Education_Person" FromRole="Educations" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="IDLang" />
+          </Key>
+          <Property Name="IDLang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Proficiency" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="IdPers" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Language_Person" FromRole="Languages" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="IDPers" />
+          </Key>
+          <Property Name="IDPers" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Nationality" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EducationalLevel" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Tel" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LinkedInProdil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FaceBookProfil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_CornerProfil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TwitterProfil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Profil" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Certifications" Relationship="Self.FK_Certifications_Person" FromRole="Person" ToRole="Certifications" />
+          <NavigationProperty Name="Educations" Relationship="Self.FK_Education_Person" FromRole="Person" ToRole="Educations" />
+          <NavigationProperty Name="Languages" Relationship="Self.FK_Language_Person" FromRole="Person" ToRole="Languages" />
+          <NavigationProperty Name="Skills" Relationship="Self.FK_Skills_Person" FromRole="Person" ToRole="Skills" />
+          <NavigationProperty Name="WorkExperiences" Relationship="Self.FK_WorkExperience_Person" FromRole="Person" ToRole="WorkExperiences" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="IDSki" />
+          </Key>
+          <Property Name="IDSki" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SkillName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdPers" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Skills_Person" FromRole="Skills" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="WorkExperience">
+          <Key>
+            <PropertyRef Name="IDExp" />
+          </Key>
+          <Property Name="IDExp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FromYear" Type="DateTime" Precision="3" />
+          <Property Name="ToYear" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDPers" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_WorkExperience_Person" FromRole="WorkExperiences" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_Certifications_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Certifications" Type="Self.Certification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="IDPers" />
+            </Principal>
+            <Dependent Role="Certifications">
+              <PropertyRef Name="IdPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Education_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Educations" Type="Self.Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="IDPers" />
+            </Principal>
+            <Dependent Role="Educations">
+              <PropertyRef Name="IdPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Language_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Languages" Type="Self.Language" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="IDPers" />
+            </Principal>
+            <Dependent Role="Languages">
+              <PropertyRef Name="IdPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skills_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Skills" Type="Self.Skill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="IDPers" />
+            </Principal>
+            <Dependent Role="Skills">
+              <PropertyRef Name="IdPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkExperience_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="WorkExperiences" Type="Self.WorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="IDPers" />
+            </Principal>
+            <Dependent Role="WorkExperiences">
+              <PropertyRef Name="IDPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBCVEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Certifications" EntityType="Self.Certification" />
+          <EntitySet Name="Educations" EntityType="Self.Education" />
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Skills" EntityType="Self.Skill" />
+          <EntitySet Name="WorkExperiences" EntityType="Self.WorkExperience" />
+          <AssociationSet Name="FK_Certifications_Person" Association="Self.FK_Certifications_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Certifications" EntitySet="Certifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Education_Person" Association="Self.FK_Education_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Educations" EntitySet="Educations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Language_Person" Association="Self.FK_Language_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Languages" EntitySet="Languages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skills_Person" Association="Self.FK_Skills_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Skills" EntitySet="Skills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkExperience_Person" Association="Self.FK_WorkExperience_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="WorkExperiences" EntitySet="WorkExperiences" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBCVModelStoreContainer" CdmEntityContainer="DBCVEntities">
+          <EntitySetMapping Name="Certifications">
+            <EntityTypeMapping TypeName="DBCVModel.Certification">
+              <MappingFragment StoreEntitySet="Certifications">
+                <ScalarProperty Name="IdCer" ColumnName="IdCer" />
+                <ScalarProperty Name="CertificationName" ColumnName="CertificationName" />
+                <ScalarProperty Name="CertificationAuthority" ColumnName="CertificationAuthority" />
+                <ScalarProperty Name="LevelCertification" ColumnName="LevelCertification" />
+                <ScalarProperty Name="FromYear" ColumnName="FromYear" />
+                <ScalarProperty Name="IdPers" ColumnName="IdPers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Educations">
+            <EntityTypeMapping TypeName="DBCVModel.Education">
+              <MappingFragment StoreEntitySet="Educations">
+                <ScalarProperty Name="IDEdu" ColumnName="IDEdu" />
+                <ScalarProperty Name="InstituteUniversity" ColumnName="InstituteUniversity" />
+                <ScalarProperty Name="TitleOfDiploma" ColumnName="TitleOfDiploma" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="FromYear" ColumnName="FromYear" />
+                <ScalarProperty Name="ToYear" ColumnName="ToYear" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="IdPers" ColumnName="IdPers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="DBCVModel.Language">
+              <MappingFragment StoreEntitySet="Languages">
+                <ScalarProperty Name="IDLang" ColumnName="IDLang" />
+                <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+                <ScalarProperty Name="Proficiency" ColumnName="Proficiency" />
+                <ScalarProperty Name="IdPers" ColumnName="IdPers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="DBCVModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="IDPers" ColumnName="IDPers" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="EducationalLevel" ColumnName="EducationalLevel" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="LinkedInProdil" ColumnName="LinkedInProdil" />
+                <ScalarProperty Name="FaceBookProfil" ColumnName="FaceBookProfil" />
+                <ScalarProperty Name="C_CornerProfil" ColumnName="C_CornerProfil" />
+                <ScalarProperty Name="TwitterProfil" ColumnName="TwitterProfil" />
+                <ScalarProperty Name="Profil" ColumnName="Profil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="DBCVModel.Skill">
+              <MappingFragment StoreEntitySet="Skills">
+                <ScalarProperty Name="IDSki" ColumnName="IDSki" />
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="IdPers" ColumnName="IdPers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkExperiences">
+            <EntityTypeMapping TypeName="DBCVModel.WorkExperience">
+              <MappingFragment StoreEntitySet="WorkExperiences">
+                <ScalarProperty Name="IDExp" ColumnName="IDExp" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="FromYear" ColumnName="FromYear" />
+                <ScalarProperty Name="ToYear" ColumnName="ToYear" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IDPers" ColumnName="IDPers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

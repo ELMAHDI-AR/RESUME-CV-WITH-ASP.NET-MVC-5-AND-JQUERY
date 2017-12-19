@@ -1,0 +1,65 @@
+﻿@model IQueryable<ResumeMVC.ViewModels.CertificationVM>
+
+
+
+<div class="panel panel-default">
+
+    <div style="margin-left:3%; margin-top: 2%;">
+        <span class="IconTitle" style="background-color:#f0ad4e">
+            <span class="glyphicon glyphicon-file" aria-hidden="true" style="margin-left:26px; margin-top: 23px; color:#FFF;"></span>
+        </span>
+
+        <h4 style="margin-left: 12%; margin-top: -6%;">Certifications</h4>
+    </div>
+
+    <div class="panel-body">
+
+       @if (Model != null && Model.Any())
+       {
+           foreach (var certification in Model)
+           {
+            <div class="box" style="border:none;">
+                <div class="details">
+                    <div style="display: block; width: 85px; margin-left: 13px;">
+                       @CertificationAuthority(certification.CertificationAuthority)
+                    </div>
+                    <div style="margin-left: 11%; margin-top: -9%;">
+                        <p style="margin-left: 4%; font-weight:bold;">
+                            @certification.CertificationName
+                            <span class="yearStyle" style="position: relative; left: 54%; background-color: #f0ad4e;"> @string.Format("{0: dd/mm/yyyy}", certification.FromYear)</span><br>
+                        </p>
+                        <span style="margin-left: 27px;"> <i>@certification.LevelCertification</i></span>
+                    </div>
+
+                </div> <!--END DETAILS-->
+
+            </div> <!--END BOX-->
+           }
+       }
+        
+
+        
+
+    </div> <!-- END PANEL BODY -->
+</div> <!-- END PANEL DEFAULT CERTIFICATIONS -->
+
+
+@helper CertificationAuthority(string authortiy)
+{
+switch (authortiy.ToLower())
+{
+    case "microsoft":
+        @Helper.GetImage("ms.png");
+        break;
+
+    case "scrum":
+        @Helper.GetImage("scrum.png");
+        break;
+
+    case "cisco":
+        @Helper.GetImage("cisco.jpg");
+        break;
+}
+}
+
+

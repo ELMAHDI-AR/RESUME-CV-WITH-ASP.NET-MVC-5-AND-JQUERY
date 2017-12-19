@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Education";
+}
+
+
+@{ Html.RenderAction("EducationPartial", "Resume"); }
+
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            //Change dropdown automatically based on the selected country
+            $('#Country').change(function () {
+
+                $('#City').html('');
+
+                $.ajax({
+                    url: '@Url.Action("GetCities", "Resume")',
+                    type: 'GET',
+                    data: { country: $(this).val() },
+                    dataType: 'Json',
+                    success: function (response) {
+                        console.log(response.data);
+
+                        for(var i = 0; i < response.data.length; i++)
+                        {
+                            $('#City').append("<option value=" + response.data[i].Value + ">" + response.data[i].Text + "</option>");
+                        }
+                    },
+                    error: function () {
+
+
+                    }
+                });
+            });
+
+            //AddOrUpdate Education
+
+            $('#AddOrUpdateEducation').on('click', function () {
+
+                var serializeModel = {
+
+                    IDEdu: $('#IDEdu').val(),
+                    InstituteUniversity: $('#InstituteUniversity').val(),
+                    TitleOfDiploma: $('#TitleOfDiploma').val(),
+                    Degree: $('#Degree').val(),
+                    FromYear: $('#FromYear').val(),
+                    ToYear: $('#ToYear').val(),
+                    Country: $('#Country').val(),
+                    City: $('#City').val()
+                };
+                console.log(JSON.stringify(serializeModel));
+
+                $.ajax({
+
+                    url: '@Url.Action("AddOrUpdateEducation", "Resume")',
+                    type: 'POST',
+                    data: { education: serializeModel },
+                    success: function (response) {
+                        alert(response.data);
+                    },
+                    error: function (error) {
+                        alert(error.data);
+                    }
+                });
+
+            });
+
+
+
+        });
+
+    </script>
+
+   @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+   
+
+
+
+
+

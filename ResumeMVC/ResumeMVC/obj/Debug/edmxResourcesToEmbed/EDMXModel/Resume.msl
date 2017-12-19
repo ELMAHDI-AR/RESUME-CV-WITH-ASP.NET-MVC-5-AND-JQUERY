@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBCVModelStoreContainer" CdmEntityContainer="DBCVEntities">
+    <EntitySetMapping Name="Certifications">
+      <EntityTypeMapping TypeName="DBCVModel.Certification">
+        <MappingFragment StoreEntitySet="Certifications">
+          <ScalarProperty Name="IdCer" ColumnName="IdCer" />
+          <ScalarProperty Name="CertificationName" ColumnName="CertificationName" />
+          <ScalarProperty Name="CertificationAuthority" ColumnName="CertificationAuthority" />
+          <ScalarProperty Name="LevelCertification" ColumnName="LevelCertification" />
+          <ScalarProperty Name="FromYear" ColumnName="FromYear" />
+          <ScalarProperty Name="IdPers" ColumnName="IdPers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Educations">
+      <EntityTypeMapping TypeName="DBCVModel.Education">
+        <MappingFragment StoreEntitySet="Educations">
+          <ScalarProperty Name="IDEdu" ColumnName="IDEdu" />
+          <ScalarProperty Name="InstituteUniversity" ColumnName="InstituteUniversity" />
+          <ScalarProperty Name="TitleOfDiploma" ColumnName="TitleOfDiploma" />
+          <ScalarProperty Name="Degree" ColumnName="Degree" />
+          <ScalarProperty Name="FromYear" ColumnName="FromYear" />
+          <ScalarProperty Name="ToYear" ColumnName="ToYear" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="IdPers" ColumnName="IdPers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Languages">
+      <EntityTypeMapping TypeName="DBCVModel.Language">
+        <MappingFragment StoreEntitySet="Languages">
+          <ScalarProperty Name="IDLang" ColumnName="IDLang" />
+          <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+          <ScalarProperty Name="Proficiency" ColumnName="Proficiency" />
+          <ScalarProperty Name="IdPers" ColumnName="IdPers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="DBCVModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="IDPers" ColumnName="IDPers" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="EducationalLevel" ColumnName="EducationalLevel" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="LinkedInProdil" ColumnName="LinkedInProdil" />
+          <ScalarProperty Name="FaceBookProfil" ColumnName="FaceBookProfil" />
+          <ScalarProperty Name="C_CornerProfil" ColumnName="C_CornerProfil" />
+          <ScalarProperty Name="TwitterProfil" ColumnName="TwitterProfil" />
+          <ScalarProperty Name="Profil" ColumnName="Profil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Skills">
+      <EntityTypeMapping TypeName="DBCVModel.Skill">
+        <MappingFragment StoreEntitySet="Skills">
+          <ScalarProperty Name="IDSki" ColumnName="IDSki" />
+          <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+          <ScalarProperty Name="IdPers" ColumnName="IdPers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkExperiences">
+      <EntityTypeMapping TypeName="DBCVModel.WorkExperience">
+        <MappingFragment StoreEntitySet="WorkExperiences">
+          <ScalarProperty Name="IDExp" ColumnName="IDExp" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="FromYear" ColumnName="FromYear" />
+          <ScalarProperty Name="ToYear" ColumnName="ToYear" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IDPers" ColumnName="IDPers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

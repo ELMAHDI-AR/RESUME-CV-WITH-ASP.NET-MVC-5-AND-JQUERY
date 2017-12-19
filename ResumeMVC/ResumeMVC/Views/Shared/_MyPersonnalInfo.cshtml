@@ -1,0 +1,102 @@
+﻿@model ResumeMVC.ViewModels.PersonVM
+
+
+<div class="panel panel-default">
+
+    <div class="panel-body">
+
+        <div id="Profil">
+
+            <img src="@Url.Action("GetProfilImage", "Resume", new { id = Model.IDPers})" alt="" class="img-circle" style="width: 125px; height: 142px; border: 3px solid #c1c1c1;" />
+
+            <h4 style="display: inline-block; margin-left: 20px;">@string.Format("{0}, {1}", Model.LastName, Model.FirstName)</h4>
+
+        </div> <!-- END PROFIL -->
+
+        <div id="container">
+
+            <div class="row" style="margin-top: 22px;">
+
+                <div class="col-xs-4">
+                    <p>
+                        <b> Date Of Birth : </b> <span>@string.Format("{0:MM/dd/yyyy}", Model.DateOfBirth)</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-4">
+                    <p>
+                        <b>Nationality :</b> <span>@Model.Nationality</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-8">
+                    <p>
+                        <b>Address : </b> <span>@Model.Address</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-3">
+                    <p>
+                        <b>Tel :</b> <span>@Model.Tel</span>
+                    </p>
+                </div>
+
+                <div class="col-xs-4">
+                    <p>
+                        <b>E-mail :</b> <span>@Model.Email</span>
+                    </p>
+                </div>
+
+                <div class="col-xs-5">
+                    <p>
+                        <b>Educational Level :</b> <span>@Model.EducationalLevel</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="socialMedia" style="margin-left: 30%;">
+            <a href="@Model.FaceBookProfil" class="btn btn-primary"> <i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</a>
+
+            <a href="@Model.LinkedInProdil" class="btn btn-success"><i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIN</a>
+
+            <a href="@Model.C_CornerProfil" class="btn btn-warning">C#Corner</a>
+
+            <a href="@Model.TwitterProfil" class="btn btn-info"><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</a>
+        </div>
+
+
+    </div> <!-- END PANEL BODY / Personnal Information-->
+
+</div> <!-- END PANEL DEFAULT-->
+
+<div class="panel panel-default">
+
+    <div style="margin-left:3%; margin-top: 2%;">
+        <span class="IconTitle" style="background-color:#a9a9a9">
+            <span class="glyphicon glyphicon-user" aria-hidden="true" style="margin-left:26px; margin-top: 23px; color:#FFF;"></span>
+        </span>
+
+        <h4 style="margin-left: 12%; margin-top: -6%;">Summary</h4>
+    </div>
+
+    <div class="panel-body">
+
+        <p class="description">
+           @Model.Summary
+        </p>
+
+
+
+    </div> <!-- END PANEL BODY -->
+</div> <!-- END PANEL DEFAULT -->
+

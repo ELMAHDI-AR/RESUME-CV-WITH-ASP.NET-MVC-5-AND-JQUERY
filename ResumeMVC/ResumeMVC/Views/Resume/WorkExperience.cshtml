@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "WorkExperience";
+}
+
+
+@{ Html.RenderAction("WorkExperiencePartial", "Resume"); }
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        //AddOrUpdate Work Experience
+
+        $('#AddOrUpdateExperience').on('click', function () {
+
+            var serializeModel = {
+
+                IDExp: $('#IDExp').val(),
+                Company: $('#Company').val(),
+                Title: $('#Title').val(),
+                Country: $('#Country').val(),
+                FromYear: $('#FromYear').val(),
+                ToYear: $('#ToYear').val(),
+                Description: $('#Description').val()
+            };
+            console.log(JSON.stringify(serializeModel));
+
+            $.ajax({
+
+                url: '@Url.Action("AddOrUpdateExperience", "Resume")',
+                type: 'POST',
+                data: { workExperience: serializeModel },
+                success: function (response) {
+                    alert(response.data);
+                },
+                error: function (error) {
+                    alert(error.data);
+                }
+            });
+
+        });
+
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

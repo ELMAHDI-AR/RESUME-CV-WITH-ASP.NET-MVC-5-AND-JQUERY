@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBCVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Certifications">
+    <Key>
+      <PropertyRef Name="IdCer" />
+    </Key>
+    <Property Name="IdCer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CertificationName" Type="varchar" MaxLength="50" />
+    <Property Name="CertificationAuthority" Type="varchar" MaxLength="20" />
+    <Property Name="LevelCertification" Type="varchar" MaxLength="18" />
+    <Property Name="FromYear" Type="datetime" />
+    <Property Name="IdPers" Type="int" />
+  </EntityType>
+  <EntityType Name="Educations">
+    <Key>
+      <PropertyRef Name="IDEdu" />
+    </Key>
+    <Property Name="IDEdu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InstituteUniversity" Type="varchar" MaxLength="50" />
+    <Property Name="TitleOfDiploma" Type="varchar" MaxLength="50" />
+    <Property Name="Degree" Type="varchar" MaxLength="50" />
+    <Property Name="FromYear" Type="datetime" />
+    <Property Name="ToYear" Type="datetime" />
+    <Property Name="City" Type="varchar" MaxLength="20" />
+    <Property Name="Country" Type="varchar" MaxLength="20" />
+    <Property Name="IdPers" Type="int" />
+  </EntityType>
+  <EntityType Name="Languages">
+    <Key>
+      <PropertyRef Name="IDLang" />
+    </Key>
+    <Property Name="IDLang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LanguageName" Type="varchar" MaxLength="15" />
+    <Property Name="Proficiency" Type="varchar" MaxLength="35" />
+    <Property Name="IdPers" Type="int" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="IDPers" />
+    </Key>
+    <Property Name="IDPers" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="20" />
+    <Property Name="LastName" Type="varchar" MaxLength="20" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="Nationality" Type="varchar" MaxLength="15" />
+    <Property Name="EducationalLevel" Type="varchar" MaxLength="30" />
+    <Property Name="Address" Type="varchar" MaxLength="70" />
+    <Property Name="Tel" Type="varchar" MaxLength="25" />
+    <Property Name="Email" Type="varchar" MaxLength="30" />
+    <Property Name="Summary" Type="varchar(max)" />
+    <Property Name="LinkedInProdil" Type="varchar" MaxLength="50" />
+    <Property Name="FaceBookProfil" Type="varchar" MaxLength="50" />
+    <Property Name="C_CornerProfil" Type="varchar" MaxLength="50" />
+    <Property Name="TwitterProfil" Type="varchar" MaxLength="50" />
+    <Property Name="Profil" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Skills">
+    <Key>
+      <PropertyRef Name="IDSki" />
+    </Key>
+    <Property Name="IDSki" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SkillName" Type="varchar" MaxLength="50" />
+    <Property Name="IdPers" Type="int" />
+  </EntityType>
+  <EntityType Name="WorkExperiences">
+    <Key>
+      <PropertyRef Name="IDExp" />
+    </Key>
+    <Property Name="IDExp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Company" Type="varchar" MaxLength="50" />
+    <Property Name="Title" Type="varchar" MaxLength="30" />
+    <Property Name="Country" Type="varchar" MaxLength="10" />
+    <Property Name="FromYear" Type="datetime" />
+    <Property Name="ToYear" Type="datetime" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="IDPers" Type="int" />
+  </EntityType>
+  <Association Name="FK_Certifications_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="Certifications" Type="Self.Certifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="IDPers" />
+      </Principal>
+      <Dependent Role="Certifications">
+        <PropertyRef Name="IdPers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Education_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="Educations" Type="Self.Educations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="IDPers" />
+      </Principal>
+      <Dependent Role="Educations">
+        <PropertyRef Name="IdPers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Language_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="Languages" Type="Self.Languages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="IDPers" />
+      </Principal>
+      <Dependent Role="Languages">
+        <PropertyRef Name="IdPers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Skills_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="Skills" Type="Self.Skills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="IDPers" />
+      </Principal>
+      <Dependent Role="Skills">
+        <PropertyRef Name="IdPers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkExperience_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="WorkExperiences" Type="Self.WorkExperiences" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="IDPers" />
+      </Principal>
+      <Dependent Role="WorkExperiences">
+        <PropertyRef Name="IDPers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBCVModelStoreContainer">
+    <EntitySet Name="Certifications" EntityType="Self.Certifications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Educations" EntityType="Self.Educations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Languages" EntityType="Self.Languages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkExperiences" EntityType="Self.WorkExperiences" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Certifications_Person" Association="Self.FK_Certifications_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Certifications" EntitySet="Certifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Education_Person" Association="Self.FK_Education_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Educations" EntitySet="Educations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Language_Person" Association="Self.FK_Language_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Languages" EntitySet="Languages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Skills_Person" Association="Self.FK_Skills_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Skills" EntitySet="Skills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkExperience_Person" Association="Self.FK_WorkExperience_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="WorkExperiences" EntitySet="WorkExperiences" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

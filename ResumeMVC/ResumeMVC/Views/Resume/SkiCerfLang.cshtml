@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "SkiCerfLang";
+}
+
+<style type="text/css">
+    .row {
+        margin-bottom: 25px;
+    }
+
+    .IconTitle {
+        border: 3px solid #e0e0e0;
+        display: inline-block;
+        width: 70px;
+        height: 70px;
+        border-radius: 100%;
+        background-color: #2e6da4;
+    }
+</style>
+
+<div class="container">
+
+    @*Skills Partial Vue *@
+    @{ Html.RenderAction("SkillsPartial", "Resume"); }
+
+
+    @* Certification Partial Vue  *@
+
+    @{ Html.RenderAction("CertificationsPartial", "Resume"); }
+
+    @* Language Partial Vue *@
+
+    @{ Html.RenderAction("LanguagePartial", "Resume"); }
+
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            //Add New Skills
+
+            $('#AddSkill').on('click', function () {
+
+                var skill = {
+                    SkillName : $('#SkillName').val()
+                };
+
+                AddNewEntity("@Url.Action("AddSkill", "Resume")", 'POST', skill);
+
+            });
+
+            //Add New Certification
+
+            $('#AddCertification').on('click', function () {
+
+                var certification = {
+                    CertificationName: $('#CertificationName').val(),
+                    CertificationAuthority: $('#CertificationAuthority').val(),
+                    LevelCertification: $('#LevelCertification').val(),
+                    FromYear: $('#FromYear').val()
+                };
+
+                AddNewEntity("@Url.Action("AddCertification", "Resume")", 'POST', certification);
+
+            });
+
+            //Add New Language
+
+            $('#AddLanguage').on('click', function () {
+
+                var language = {
+                    LanguageName: $('#LanguageName').val(),
+                    Proficiency: $('#Proficiency').val()
+                };
+
+                AddNewEntity("@Url.Action("AddLanguage", "Resume")", 'POST', language);
+
+            });
+
+            function AddNewEntity(action, type, model)
+            {
+                $.ajax({
+                    url: action,
+                    type: type,
+                    data: model,
+                    success: function (response) {
+                        alert(response.data);
+                    },
+                    error: function (error) {
+                        alert(error.data);
+                    }
+                });
+            }
+        });
+
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+

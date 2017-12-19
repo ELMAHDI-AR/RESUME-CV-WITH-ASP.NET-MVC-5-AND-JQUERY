@@ -1,0 +1,38 @@
+﻿@model IQueryable<ResumeMVC.ViewModels.EducationVM>
+
+
+
+<div class="panel panel-default">
+
+    <div style="margin-left:3%; margin-top: 2%;">
+        <span class="IconTitle" style="background-color:#5cb85c">
+            <span class="glyphicon glyphicon-education" aria-hidden="true" style="margin-left:26px; margin-top: 23px; color:#FFF;"></span>
+        </span>
+
+        <h4 style="margin-left: 12%; margin-top: -6%;">Education</h4>
+    </div>
+
+    <div class="panel-body">
+@if (Model != null && Model.Any())
+{
+    foreach (var education in Model)
+    {
+        <div class="box">
+            <div class="details">
+
+             
+                    <p style="margin-left: 4%;">
+                        <b> @string.Format("{0} : {1}", education.InstituteUniversity, education.TitleOfDiploma) </b>
+                        <span class="yearStyle" style="position: relative; left: 53%; background-color: #5cb85c;"> @string.Format("{0: yyyy} - {1: yyyy}", education.FromYear, education.ToYear)</span><br>
+                        <span>@education.Degree</span><br>
+                        <span> <i> @string.Format("{0} | {1}", @education.City, @education.Country) </i></span>
+                    </p>
+
+            </div> <!--END DETAILS-->
+
+        </div> <!--END BOX-->
+    }
+}
+
+    </div> <!-- END PANEL BODY -->
+</div> <!-- END PANEL DEFAULT EDUCATION -->

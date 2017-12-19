@@ -1,0 +1,182 @@
+﻿@model ResumeMVC.ViewModels.PersonVM
+
+@{
+    ViewBag.Title = "PersonnalInformtion";
+}
+
+<style type="text/css">
+    .row {
+        margin-bottom: 25px;
+    }
+
+    .IconTitle {
+        border: 3px solid #e0e0e0;
+        display: inline-block;
+        width: 70px;
+        height: 70px;
+        border-radius: 100%;
+        background-color: #269abc;
+    }
+</style>
+
+
+
+<div class="container">
+
+    <div class="PersonnelInformation FirstLevel" style="margin: 19% auto;">
+
+        <div style="margin-left:18%;">
+            <span class="IconTitle">
+                <span class="glyphicon glyphicon-user" aria-hidden="true" style="margin-left:26px; margin-top: 23px; color:#FFF;"></span>
+            </span>
+
+            <h4 style="margin-left: 8%; margin-top: -4%;">Personnal Information</h4>
+        </div>
+
+
+        <div class="panel panel-default" style="width: 65%; margin-left: 18%; margin-top: 3%;">
+
+            <div class="panel-heading">
+                <h3 class="panel-title">Personnal Informtion</h3>
+            </div> <!-- END PANEL HEADING -->
+
+            <div class="panel-body">
+
+            @using (Html.BeginForm("PersonnalInformtion", "Resume", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                    <div class="row">
+
+                        <div class="col-xs-6">
+                            <input type="file" class="form-control" name="ImageProfil" id="ImageProfil" onchange="fileCheck(this);" placeholder="Profil" style="margin: 8px 60%;" />
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xs-6">
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-6">
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xs-4">
+                            @*@Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", @placeholder = "Date of Birth" } })*@
+                            
+                            <div class="form-group">
+                                <div class="input-group date" id="datetimepicker1">
+                                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", @placeholder = "Date of Birth" } })
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                              @Html.DropDownListFor(model =>model.Nationality , Model.ListNationality, new { @class = "form-control" }) 
+                              @Html.ValidationMessageFor(model => model.Nationality, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                        @Html.DropDownListFor(model => model.EducationalLevel, Model.ListEducationalLevel, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.EducationalLevel, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xs-12">
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xs-6">
+                            @Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control", @placeholder = "Tel" } })
+                            @Html.ValidationMessageFor(model => model.Tel, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-6">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "E-Mail" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xs-3">
+                            @Html.EditorFor(model => model.LinkedInProdil, new { htmlAttributes = new { @class = "form-control", @placeholder = "LinkedIn Account" } })
+                            @Html.ValidationMessageFor(model => model.LinkedInProdil, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-3">
+                            @Html.EditorFor(model => model.FaceBookProfil, new { htmlAttributes = new { @class = "form-control", @placeholder = "FaceBook Account" } })
+                            @Html.ValidationMessageFor(model => model.FaceBookProfil, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-3">
+                            @Html.EditorFor(model => model.C_CornerProfil, new { htmlAttributes = new { @class = "form-control", @placeholder = "C#Corner Account" } })
+                            @Html.ValidationMessageFor(model => model.C_CornerProfil, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-3">
+                            @Html.EditorFor(model => model.TwitterProfil, new { htmlAttributes = new { @class = "form-control", @placeholder = "Twitter Account" } })
+                            @Html.ValidationMessageFor(model => model.TwitterProfil, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xs-12">
+                            @Html.EditorFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control", @placeholder = "Summary", @rows = "8", @cols = "30" } })
+                            @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+                        </div>
+                       
+                    </div>
+
+                    <input type="submit" class="btn btn-info" style="position: relative; right: -76%;" value="Next Step>> Education"/>
+
+                    if(ViewBag.Message != null)
+                    {
+                        <span> @ViewBag.Message </span>
+                     }
+
+                    if (ViewBag.MessageForm != null)
+                    {
+                        <span> @ViewBag.MessageForm </span>
+                    }
+
+            }
+
+            </div> <!-- END PNEL BODY-->
+
+        </div>
+
+    </div>
+
+</div> <!-- CONTAINER -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

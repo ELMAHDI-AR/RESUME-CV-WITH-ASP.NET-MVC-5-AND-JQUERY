@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "CV";
+}
+
+<style type="text/css">
+    .socialMedia {
+        padding-left: 16%;
+    }
+
+    .panel-default {
+        width: 65%;
+        margin-left: 18%;
+        margin-top: 3%;
+    }
+
+    .IconTitle {
+        border: 3px solid #e0e0e0;
+        display: inline-block;
+        width: 70px;
+        height: 70px;
+        border-radius: 100%;
+    }
+
+    .yearStyle {
+        position: relative;
+        left: 50%;
+        font-size: 13px;
+        color: #FFF;
+        padding: 5px;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+
+    .box {
+        border: 1px solid #d0cfcf;
+        padding: 16px 0px;
+        border-radius: 11px;
+        margin-top: 15px;
+    }
+
+    .description {
+        padding: 9px 48px;
+        font-size: 13px;
+        color: #797575;
+        font-style: italic;
+    }
+</style>
+
+
+<div class="container">
+
+    @{ Html.RenderAction("GetPersonnalInfoPartial", "Resume"); }
+
+    @{ Html.RenderAction("GetEducationCVPartial", "Resume"); }
+
+    @{ Html.RenderAction("WorkExperienceCVPartial", "Resume"); }
+
+    @{ Html.RenderAction("SkillsCVPartial", "Resume"); }
+
+    @{ Html.RenderAction("CertificationsCVPartial", "Resume"); }
+
+    @{ Html.RenderAction("LanguageCVPartial", "Resume"); }
+
+</div>
+
+
+
